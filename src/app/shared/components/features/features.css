@@ -1,0 +1,277 @@
+.features-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    margin-bottom: 120px;
+    gap: 60px;
+}
+
+.feature:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.feature-content {
+    flex: 1;
+    max-width: 400px;
+}
+
+.feature-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    position: relative;
+}
+
+.feature-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff6b35;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.feature-description {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Calendario semanal */
+.calendar-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.calendar-day {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #666;
+    position: relative;
+}
+
+.calendar-day.active {
+    background: #ff6b35;
+    color: white;
+}
+
+.calendar-day.selected::after {
+    content: '🍽️';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 0.7rem;
+}
+
+.person-calendar {
+    position: absolute;
+    right: -40px;
+    bottom: -20px;
+    width: 80px;
+    height: 120px;
+    background: url('https://via.placeholder.com/80x120/ff6b35/ffffff?text=👤') no-repeat center;
+    background-size: contain;
+}
+
+/* Gestión de recetas */
+.recipe-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.recipe-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.recipe-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    position: relative;
+}
+
+.recipe-icon:nth-child(1) {
+    background: linear-gradient(135deg, #ffa500, #ff8c00);
+}
+
+.recipe-icon:nth-child(2) {
+    background: linear-gradient(135deg, #ffd700, #ffb347);
+}
+
+.recipe-icon:nth-child(3) {
+    background: linear-gradient(135deg, #ff7f50, #ff6347);
+}
+
+.recipe-icon::after {
+    content: '';
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 2px;
+    background: #ddd;
+}
+
+.person-recipe {
+    width: 100px;
+    height: 120px;
+    background: url('https://via.placeholder.com/100x120/ff6b35/ffffff?text=👤') no-repeat center;
+    background-size: contain;
+}
+
+/* Lista de compras */
+.shopping-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.shopping-list {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.list-checkbox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ff6b35;
+    border-radius: 3px;
+    background: #ff6b35;
+    position: relative;
+}
+
+.list-checkbox::after {
+    content: '✓';
+    color: white;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.shopping-cart {
+    width: 80px;
+    height: 80px;
+    background: url('https://via.placeholder.com/80x80/ff6b35/ffffff?text=🛒') no-repeat center;
+    background-size: contain;
+}
+
+.person-shopping {
+    width: 80px;
+    height: 120px;
+    background: url('https://via.placeholder.com/80x120/ff6b35/ffffff?text=👤') no-repeat center;
+    background-size: contain;
+}
+
+/* Búsqueda y filtrado */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.search-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 12px 40px rgba(255, 107, 53, 0.3);
+}
+
+.search-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: white;
+}
+
+.search-icon {
+    font-size: 3rem;
+}
+
+.food-items {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.food-item {
+    font-size: 1.5rem;
+}
+
+.person-search {
+    width: 60px;
+    height: 100px;
+    background: url('https://via.placeholder.com/60x100/333333/ffffff?text=👤') no-repeat center;
+    background-size: contain;
+}
+
+.search-accessories {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.bottle, .container {
+    width: 30px;
+    height: 60px;
+    background: #ff6b35;
+    border-radius: 15px;
+}
+
+.bottle {
+    height: 80px;
+    background: #333;
+}
