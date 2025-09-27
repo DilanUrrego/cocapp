@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Fondo oscuro */
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+
+/* Modal en el centro */
+.modal {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+}
+
+
+.container {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 850px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* --- Imagen lateral --- */
+.image-section {
+  flex: 1;
+}
+
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Formulario --- */
+.form-section {
+  flex: 1;
+  background: #ffe8d6;
+  padding: 40px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #d45d00;
+}
+
+.form-section h2 {
+  color: #d45d00;
+  margin-bottom: 25px;
+  font-size: 22px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  margin: 8px 0 4px;
+  color: #444;
+}
+
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  background: #f7d7c2;
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #bfa6a0;
+}
+
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7d7c2;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.file-upload input {
+  border: none;
+  background: transparent;
+}
+
+.file-upload span {
+  font-size: 18px;
+  color: #d45d00;
+}
+
+button {
+  margin-top: 20px;
+  background: #ff6b35;
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff5722;
+}
+
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7d7c2; /* color durazno */
+  border-radius: 8px;
+  padding: 10px 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+.file-upload input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0; /* ocultamos el input */
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.upload-icon {
+  font-size: 18px;
+  color: #d45d00;
+}

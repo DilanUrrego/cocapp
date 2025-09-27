@@ -1,0 +1,38 @@
+<!-- Fondo oscuro -->
+<div class="modal-backdrop" (click)="close()"></div>
+
+<!-- Contenedor del modal -->
+<div class="modal container">
+  <!-- Sección imagen -->
+  <div class="image-section">
+    <img src="../assets/comida_saludable.jpg" alt="Comida saludable">
+  </div>
+
+  <!-- Sección formulario -->
+  <div class="form-section">
+    <a class="close-btn" (click)="close()">×</a>
+    <h2>{{ title }}</h2>
+
+    <form [formGroup]="signUpForm">
+      <label for="username">Nombre</label>
+      <input type="text" id="username" formControlName="username">
+
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email">
+
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" formControlName="password">
+
+      <label for="confirmPassword">Confirmar Contraseña</label>
+      <input type="password" id="confirmPassword" formControlName="repassword">
+
+      <label for="profilePhoto">Foto de Perfil</label>
+      <div class="file-upload">
+          <input type="file" id="profilePhoto" formControlName="profilePhoto">
+          <span class="upload-icon">⤴</span>
+      </div>
+
+      <button type="button" (click)="onSignUp()">Entrar</button>
+    </form>
+  </div>
+</div>

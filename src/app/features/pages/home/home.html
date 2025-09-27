@@ -1,4 +1,38 @@
-<section class="features-section">
+<section class="hero">
+  <div class="hero-content">
+    <div class="box-container">
+      <img
+        class="cocas-text"
+        src="https://framerusercontent.com/images/JmcEv7KBSOHVSedtaKlDV0mklU.png?lossless=1"
+      />
+    </div>
+
+    <div class="content-text">
+      <h1 class="main-text">¡No más arroz con huevo de último minuto!</h1>
+      <h2 class="sub-text">
+        Planea tus Cocas como un <span class="highlight">PRO</span>.
+      </h2>
+
+      <div class="buttons">
+        <!-- Botón que abre popup -->
+        <button (click)="showLogin = true" class="cta-button">
+          Iniciar Sesión
+        </button>
+
+        <button (click)="showSignUp = true" class="cta-button">
+          Regístrate
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Aquí aparece el popup -->
+<app-login *ngIf="showLogin" (closePopup)="showLogin = false"></app-login>
+
+
+
+<section class="features-section">  
         <!-- Calendario semanal -->
         <div class="feature">
             <div class="feature-content">
@@ -43,3 +77,24 @@
             </div>
         </div>
     </section>
+
+<section class="footer-cta">
+  <div class="cta-container">
+    <h2 class="cta-title">Regístrate en <span class="brand-highlight">COCAPP</span></h2>
+    <p class="cta-subtitle">Y prepara tus Cocas</p>
+    <!-- Botón popup de registro -->
+    <button (click)="showSignUp = true" class="cta-button">Registrar</button>
+  </div>
+</section>
+
+
+<!-- Popup registro -->
+<app-sign-up *ngIf="showSignUp" (closePopup)="showSignUp = false"></app-sign-up>
+
+
+
+
+
+
+
+
