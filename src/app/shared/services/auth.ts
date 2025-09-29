@@ -11,7 +11,7 @@ export class Auth {
   
   login(user:User):LoginResponse {
     
-    let userSrt = localStorage.getItem('user.email');
+    let userSrt = localStorage.getItem(user.email);
 
     if (userSrt && user.password === JSON.parse(userSrt)['password']) {
       return { success: true };
