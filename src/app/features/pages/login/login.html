@@ -1,26 +1,19 @@
 <div class="modal-backdrop" (click)="close()"></div>
 
 <div class="modal container">
-  <!-- Sección de imagen -->
   <div class="image-section">
     <img src="../assets/comida_saludable.jpg" alt="Comida saludable" />
   </div>
 
-  <!-- Sección de formulario -->
   <div class="form-section">
     <a class="close-btn" (click)="close()">×</a>
     <h2>{{ title }}</h2>
 
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      <!-- Email -->
       <label for="email">Email</label>
       <input id="email" type="email" formControlName="email" placeholder="ejemplo@mail.com" />
-
-      <!-- Contraseña -->
       <label for="password">Contraseña</label>
       <input id="password" type="password" formControlName="password" placeholder="Mínimo 8 caracteres" />
-
-      <!-- Botones -->
       <button type="submit">Entrar</button>
     </form>
   </div>
