@@ -1,0 +1,52 @@
+<section class="recipe-manager">
+  <div class="manager-container">
+    <div class="manager-header">
+      <h1 class="title">Recetario</h1>
+      <button class="btn-add-recipe" (click)="showRecipeCreator = true">
+        <span class="plus-icon">+</span>
+        Añadir Receta
+      </button>
+    </div>
+
+    <div class="search-filter-section">
+      <div class="search-box">
+        <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Busca recetas o ingredientes..."
+          ngModel="searchText"
+          (input)="onSearchChange()"
+        >
+      </div>
+
+      <div class="filter-dropdown">
+        <button class="filter-button" (click)="toggleDropdown()">
+          {{ selectedFilter }}
+          <svg class="dropdown-icon" [class.open]="isDropdownOpen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        @if(isDropdownOpen){
+            <ul class="dropdown-menu">
+            @for(filter of filters; track filter){
+            <li 
+                class="dropdown-item" 
+                [class.active]="filter === selectedFilter"
+                (click)="selectFilter(filter)">
+                {{ filter }}
+            </li>}
+            </ul>
+        
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+@if(showRecipeCreator){
+<app-create-recipe (closePopup)="showRecipeCreator = false"></app-create-recipe>
+}

@@ -1,0 +1,220 @@
+.recipe-manager {
+  background-color: #FFF5F0;
+  padding: 2rem;
+  border-radius: 24px;
+  margin: 2rem auto;
+  max-width: 1400px;
+}
+
+.manager-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.manager-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ff6b35;
+  margin: 0;
+}
+
+.btn-add-recipe {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  background-color: #ff6b35;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(230, 126, 80, 0.3);
+}
+
+.btn-add-recipe:hover {
+  background-color: #D66940;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(230, 126, 80, 0.4);
+}
+
+.btn-add-recipe:active {
+  transform: translateY(0);
+}
+
+.plus-icon {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.search-filter-section {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-box {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  color: #E67E50;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #5A5A5A;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(230, 126, 80, 0.15);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.filter-dropdown {
+  position: relative;
+  min-width: 200px;
+}
+
+.filter-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background-color: white;
+  border: 2px solid #FFE5D9;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #E67E50;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+  border-color: #E67E50;
+  box-shadow: 0 2px 8px rgba(230, 126, 80, 0.1);
+}
+
+.dropdown-icon {
+  transition: transform 0.3s ease;
+  color: #E67E50;
+}
+
+.dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 2px solid #FFE5D9;
+  border-radius: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-item {
+  padding: 0.75rem 1rem;
+  color: #5A5A5A;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #FFF5F0;
+  color: #E67E50;
+}
+
+.dropdown-item.active {
+  background-color: #FFE5D9;
+  color: #ff6b35;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .recipe-manager {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .manager-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .btn-add-recipe {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-filter-section {
+    flex-direction: column;
+  }
+
+  .filter-dropdown {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .search-input {
+    font-size: 0.9rem;
+  }
+}
