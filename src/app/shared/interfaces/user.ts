@@ -4,5 +4,4 @@ export interface User {
   name: string;
   rePassword: string;
   profilePhoto?: string;
-
 }
