@@ -14,6 +14,4 @@ import { SignUp } from '../sign-up/sign-up';
 export class Home {
   showLogin = false;
   showSignUp = false;
- 
-
 }
