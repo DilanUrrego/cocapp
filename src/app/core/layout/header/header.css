@@ -1,0 +1,161 @@
+/* header.component.css */
+
+.header {
+  width: 100%;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 2rem 2rem;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo-icon {
+  width: 75px;
+  height: 75px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+  transform: scale(1.05);
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+    flex: 1;
+    display: flex;
+    gap: 0;
+    background-color: #FFF5F0;
+    border-radius: 50px;
+    padding: 4px;
+    max-width: 600px;
+}
+
+.nav-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background-color: transparent;
+    color: #8B5E3C;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.nav-btn:hover {
+  background-color: #E8E8E8;
+  color: #333333;
+}
+
+.nav-btn.active {
+  background-color: #ff6b35;
+  color: #FFFFFF;
+}
+
+.nav-btn.active:hover {
+  background-color: #D66940;
+}
+
+/* User Avatar */
+.user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #ff6b35;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(232, 102, 67, 0.3);
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(232, 102, 67, 0.4);
+}
+
+.avatar-letter {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    padding: 0.75rem 1rem;
+  }
+
+  .header-container {
+    gap: 1rem;
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-buttons {
+    padding: 3px;
+  }
+
+  .nav-btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .user-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .avatar-letter {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .nav-btn span {
+    display: none;
+  }
+
+  .nav-btn {
+    padding: 0.6rem;
+  }
+
+  .nav-buttons {
+    gap: 0.25rem;
+  }
+}
