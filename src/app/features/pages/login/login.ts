@@ -46,7 +46,7 @@ onLogin() {
         timer: 1500,
         showConfirmButton: false
       }).then(() => {
-        this.router.navigate([loginResponse.redirectTo]);
+        this.router.navigate(['/recipes']);
       });
       return;
     }

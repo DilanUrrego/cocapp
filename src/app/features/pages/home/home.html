@@ -28,9 +28,11 @@
 </section>
 
 <!-- Aquí aparece el popup -->
-<app-login *ngIf="showLogin" (closePopup)="showLogin = false"></app-login>
+<!-- <app-login *ngIf="showLogin" (closePopup)="showLogin = false"></app-login> -->
 
-
+@if(showLogin){
+<app-login (closePopup)="showLogin = false"></app-login>
+}
 
 <section class="features-section">  
         <!-- Calendario semanal -->
@@ -89,12 +91,6 @@
 
 
 <!-- Popup registro -->
-<app-sign-up *ngIf="showSignUp" (closePopup)="showSignUp = false"></app-sign-up>
-
-
-
-
-
-
-
-
+ @if(showSignUp){
+<app-sign-up (closePopup)="showSignUp = false"></app-sign-up>
+ }
