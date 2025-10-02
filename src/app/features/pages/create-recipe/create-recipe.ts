@@ -4,6 +4,8 @@ import { FormBuilder, Validators, ReactiveFormsModule, FormArray } from '@angula
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Recipe } from '../../../shared/interfaces/recipe';
+import { RecipeLocal } from '../../../shared/services/recipe';
+
 
 @Component({
   selector: 'app-create-recipe',
@@ -15,6 +17,7 @@ export class CreateRecipe {
   @Output() closePopup = new EventEmitter<void>();
 
   router = inject(Router);
+  recipeLocal=inject(RecipeLocal);
   fb = inject(FormBuilder);
 
   recipeForm = this.fb.group({
@@ -40,8 +43,7 @@ export class CreateRecipe {
 
   const recipe = this.recipeForm.value as Recipe;
   
-  // Aquí iría la lógica para guardar la receta
-  console.log('Receta a guardar:', recipe);
+   this.recipeLocal.addRecipe(recipe);
   
   Swal.fire({
     icon: 'success',
@@ -80,9 +82,7 @@ export class CreateRecipe {
     this.closePopup.emit();
   }
 
-    // Método para cerrar al hacer clic en el overlay
   onOverlayClick(event: MouseEvent) {
-    // Verifica si el clic fue directamente en el overlay y no en el modal
     if ((event.target as HTMLElement).classList.contains('modal-overlay')) {
       this.close();
     }
