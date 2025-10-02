@@ -14,7 +14,7 @@ import Swal from 'sweetalert2'
   styleUrl: './sign-up.css'
 })
 export class SignUp {
-  @Output() closePopup = new EventEmitter<void>(); // 👈 para notificar al padre
+  @Output() closePopup = new EventEmitter<void>(); 
 
   fb = inject(FormBuilder);
   router = inject(Router);
@@ -61,7 +61,7 @@ export class SignUp {
         timer: 1500,
         showConfirmButton: false
       }).then(() => {
-        this.router.navigate([signUpResponse.message]);
+        this.router.navigate(['/recipes']);
       });
       return;
     }
@@ -74,8 +74,8 @@ export class SignUp {
   }
 
   close() {
-    this.signUpForm.reset(); // 👈 limpiar el form
-    this.closePopup.emit();  // 👈 cerrar el popup en el padre
+    this.signUpForm.reset(); 
+    this.closePopup.emit();  
   }
 
 

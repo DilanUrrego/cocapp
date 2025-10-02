@@ -21,7 +21,7 @@ export class Auth {
 
   signUp(user:User):SignUpResponse {   
     
-    if (localStorage.getItem('user.email')) {
+    if (localStorage.getItem(user.email)) {
       return { success: false, message: 'El usuario ya existe' };
     }
 

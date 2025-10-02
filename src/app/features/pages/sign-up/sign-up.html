@@ -1,35 +1,31 @@
-<!-- Fondo oscuro -->
-<div class="modal-backdrop" (click)="close()"></div>
 
-<!-- Contenedor del modal -->
+<div class="modal-backdrop" (click)="close()"></div>
 <div class="modal container">
-  <!-- Sección imagen -->
   <div class="image-section">
     <img src="../assets/comida_saludable.jpg" alt="Comida saludable">
   </div>
-
-  <!-- Sección formulario -->
   <div class="form-section">
     <a class="close-btn" (click)="close()">×</a>
     <h2>{{ title }}</h2>
-
     <form [formGroup]="signUpForm">
       <label for="username">Nombre</label>
       <input type="text" id="username" formControlName="username">
 
       <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email">
+      <input type="email" id="email" formControlName="email" placeholder="ejemplo@gmail.com">
 
       <label for="password">Contraseña</label>
-      <input type="password" id="password" formControlName="password">
+      <input type="password" id="password" formControlName="password" placeholder="Mínimo 5 caracteres">
 
       <label for="confirmPassword">Confirmar Contraseña</label>
-      <input type="password" id="confirmPassword" formControlName="repassword">
+      <input type="password" id="confirmPassword" formControlName="repassword" placeholder="Mínimo 5 caracteres">
 
       <label for="profilePhoto">Foto de Perfil</label>
       <div class="file-upload">
           <input type="file" id="profilePhoto" formControlName="profilePhoto">
-          <span class="upload-icon">⤴</span>
+          <span class="upload-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M246.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 109.3 192 320c0 17.7 14.3 32 32 32s32-14.3 32-32l0-210.7 73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128zM64 352c0-17.7-14.3-32-32-32S0 334.3 0 352l0 64c0 53 43 96 96 96l256 0c53 0 96-43 96-96l0-64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 64c0 17.7-14.3 32-32 32L96 448c-17.7 0-32-14.3-32-32l0-64z"/></svg>
+          </span>
       </div>
 
       <button type="button" (click)="onSignUp()">Entrar</button>
