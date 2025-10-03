@@ -6,7 +6,6 @@
       <h2 class="modal-title">Crear Nueva Receta</h2>
 
       <form class="recipe-form" [formGroup]="recipeForm" (ngSubmit)="addRecipe()">
-        <!-- Fila 1: Nombre y Tiempos de Comida -->
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Nombre de la Receta</label>
@@ -31,7 +30,6 @@
           </div>
         </div>
 
-        <!-- Fila 2: Tiempo de Preparación y Porciones -->
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Tiempo de Preparación (minutos)</label>
@@ -54,7 +52,6 @@
           </div>
         </div>
 
-        <!-- Sección de Ingredientes -->
         <div class="ingredients-section">
           <div class="section-header">
             <label class="form-label">Ingredientes</label>
@@ -64,7 +61,6 @@
             </button>
           </div>
 
-          <!-- Lista de Ingredientes -->
           <div class="ingredients-list" formArrayName="ingredients">
             @for(ingredient of ingredients.controls; track $index; let i = $index){
             <div class="ingredient-row" [formGroupName]="i">
@@ -110,7 +106,6 @@
           </div>
         </div>
 
-        <!-- Instrucciones -->
         <div class="form-group full-width">
           <label class="form-label">Instrucciones (Opcional)</label>
           <textarea 
@@ -121,7 +116,6 @@
           ></textarea>
         </div>
 
-        <!-- Botones de Acción -->
         <div class="modal-actions">
           <button type="submit" class="btn-save">
             Guardar Receta

@@ -18,7 +18,6 @@
           type="text" 
           class="search-input" 
           placeholder="Busca recetas o ingredientes..."
-          ngModel="searchText"
           (input)="onSearchChange()"
         >
       </div>
@@ -44,6 +43,12 @@
         }
       </div>
     </div>
+    
+    <app-recipe-list
+      [recipes]="filteredRecipes"
+      (editRecipe)="onEditRecipe($event)"
+      (deleteRecipe)="onDeleteRecipe(+$event)">
+    </app-recipe-list>
   </div>
 </section>
 

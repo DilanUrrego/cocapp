@@ -1,0 +1,147 @@
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.recipe-card {
+  background: #fef7ff;
+  border: 1px solid #f3e8ff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+
+  .recipe-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #ff6b35;
+    margin: 0;
+    flex: 1;
+  }
+
+  .meal-type-badge {
+    background: #8B5E3C;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}
+
+.card-meta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+
+    .icon-circle {
+      background: #f3e8ff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.ingredients-preview {
+  margin-bottom: 1.5rem;
+
+  .ingredients-header {
+    font-weight: 600;
+    color: #ff6b35;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .ingredients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+
+    .ingredient-tag {
+      background: #faf5ff;
+      border: 1px solid #e9d5ff;
+      border-radius: 8px;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      color: #ff6b35;
+    }
+
+    .more-items {
+      color: #d8977f;
+      font-size: 0.75rem;
+      font-style: italic;
+    }
+  }
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+
+  .action-btn {
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: auto;
+    height: auto;
+
+    &.edit-btn {
+      background: #ff8e15;
+      color: white;
+
+      mat-icon {
+        font-size: 1rem;
+      }
+    }
+
+    &.delete-btn {
+      background: #ff7462;
+      color: white;
+
+      mat-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.no-recipes {
+  text-align: center;
+  padding: 3rem;
+  color: #9ca3af;
+
+  mat-icon {
+    font-size: 3rem;
+    height: 3rem;
+    width: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
+}

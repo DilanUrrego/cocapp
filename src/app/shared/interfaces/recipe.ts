@@ -6,13 +6,13 @@ export interface Ingredient {
 }
 
 export interface Recipe {
-  id?: string | number; // Opcional para nuevas recetas
+  id?: string | number;
   name: string;
   mealTime: 'Desayuno' | 'Almuerzo' | 'Cena' | 'Postre' | 'Snack';
   prepTime: number;
   servings: number;
-  instructions?: string; // Opcional
+  instructions?: string;
   ingredients: Ingredient[];
-  createdAt?: Date; // Opcional - para fecha de creación
-  updatedAt?: Date; // Opcional - para fecha de actualización
+  createdAt?: Date;
+  updatedAt?: Date;
 }

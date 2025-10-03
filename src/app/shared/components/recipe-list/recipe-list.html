@@ -1,0 +1,51 @@
+<div class="recipes-grid" *ngIf="recipes.length > 0; else noRecipes">
+  <div *ngFor="let recipe of recipes" class="recipe-card">
+    <div class="card-header">
+      <h3 class="recipe-name">{{ recipe.name }}</h3>
+      <span class="meal-type-badge">{{ getMealTimeLabel(recipe.mealTime) }}</span>
+    </div>
+
+    <div class="card-meta">
+      <div class="meta-item">
+        <span class="icon-circle">⏱️</span>
+        {{ recipe.prepTime }} min
+      </div>
+      <div class="meta-item">
+        <span class="icon-circle">👥</span>
+        {{ recipe.servings }} porciones
+      </div>
+    </div>
+
+    <div class="ingredients-preview">
+      <div class="ingredients-header">
+        Ingredientes ({{ recipe.ingredients.length }})
+      </div>
+      <div class="ingredients-list">
+        @for (ingredient of recipe.ingredients; track ingredient.name) {
+          <span class="ingredient-tag" *ngIf="getIngredientPreviewIndex(ingredient, recipe) < 3">
+            {{ ingredient.name }}
+          </span>
+        }
+        @if (recipe.ingredients.length > 3) {
+          <span class="more-items">y {{ recipe.ingredients.length - 3 }} más...</span>
+        }
+      </div>
+    </div>
+
+    <div class="card-actions">
+      <button class="action-btn edit-btn" mat-raised-button (click)="onEdit(recipe)" matTooltip="Editar">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button class="action-btn delete-btn" mat-raised-button color="warn" (click)="onDelete(recipe.id!)" matTooltip="Eliminar">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noRecipes>
+  <div class="no-recipes">
+    <mat-icon>restaurant_menu</mat-icon>
+    <p>No hay recetas disponibles. ¡Agrega una nueva! o Recarga la página con F5</p>
+  </div>
+</ng-template>
