@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,10 @@ import { RecipeLocal } from '../../../shared/services/recipe';
   styleUrls: ['./create-recipe.css']
 })
 export class CreateRecipe {
+  @Input() recipeToEdit: Recipe | null = null;
+  @Output() recipeCreated = new EventEmitter<Recipe>();
   @Output() closePopup = new EventEmitter<void>();
+
 
   router = inject(Router);
   recipeLocal=inject(RecipeLocal);
@@ -23,8 +26,8 @@ export class CreateRecipe {
   recipeForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
     mealTime: ['', Validators.required],
-    prepTime: [0, [Validators.required, Validators.min(1)]], // Cambiado a number
-    servings: [0, [Validators.required, Validators.min(1)]], // Cambiado a number
+    prepTime: [0, [Validators.required, Validators.min(1)]],
+    servings: [0, [Validators.required, Validators.min(1)]],
     instructions: [''],
     ingredients: this.fb.array([
       this.createIngredient()
@@ -41,20 +44,22 @@ export class CreateRecipe {
       return;
     }
 
-  const recipe = this.recipeForm.value as Recipe;
-  
-   this.recipeLocal.addRecipe(recipe);
-  
-  Swal.fire({
-    icon: 'success',
-    title: 'Receta creada',
-    text: 'La receta se ha guardado correctamente.',
-    timer: 1500,
-    showConfirmButton: false
-  }).then(() => {
-    this.router.navigate(['/recipes']);
-  });
-}
+    const recipe = this.recipeForm.value as Recipe;
+    
+    this.recipeLocal.addRecipe(recipe);
+
+    this.recipeCreated.emit(recipe);
+    
+    Swal.fire({
+      icon: 'success',
+      title: 'Receta creada',
+      text: 'La receta se ha guardado correctamente.',
+      timer: 1200,
+      showConfirmButton: false
+    }).then(() => {
+      this.close();
+    });
+  }
   private createIngredient() {
     return this.fb.group({
       name: ['', Validators.required],
@@ -91,4 +96,27 @@ export class CreateRecipe {
   close() {
     this.closePopup.emit();
   }
+
+  ngOnChanges() {
+    if (this.recipeToEdit) {
+      this.recipeForm.patchValue({
+        name: this.recipeToEdit.name,
+        mealTime: this.recipeToEdit.mealTime,
+        prepTime: this.recipeToEdit.prepTime,
+        servings: this.recipeToEdit.servings,
+        instructions: this.recipeToEdit.instructions
+      });
+
+      this.ingredients.clear();
+      this.recipeToEdit.ingredients.forEach(ing => {
+        this.ingredients.push(this.fb.group({
+          name: [ing.name, Validators.required],
+          quantity: [ing.quantity, Validators.required],
+          unit: [ing.unit, Validators.required],
+          type: [ing.type, Validators.required]
+        }));
+      });
+    }
+  }
+
 }

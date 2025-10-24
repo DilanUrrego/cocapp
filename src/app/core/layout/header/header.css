@@ -146,6 +146,7 @@
   }
 }
 
+
 @media (max-width: 576px) {
   .nav-btn span {
     display: none;
@@ -158,4 +159,26 @@
   .nav-buttons {
     gap: 0.25rem;
   }
+}
+
+.mat-mdc-menu-panel {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  padding: 4px 0;
+  min-width: 180px;
+}
+.mat-mdc-menu-item {
+  font-family: inherit;
+  font-size: 14px;
+  color: #333;
+  border-radius: 8px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mat-mdc-menu-item:hover {
+  background-color: #ffe8e0;
+  color: #ff5722;
 }
