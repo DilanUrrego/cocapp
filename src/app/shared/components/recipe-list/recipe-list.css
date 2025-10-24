@@ -6,11 +6,11 @@
 }
 
 .recipe-card {
-  background: #fef7ff;
+  background: #FFF0E5;
   border: 1px solid #f3e8ff;
-  border-radius: 12px;
+  border-radius: 24px;
   padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.2s, transform 0.2s;
 
   &:hover {
@@ -34,7 +34,7 @@
   }
 
   .meal-type-badge {
-    background: #8B5E3C;
+    background: #ff6b35;
     color: white;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
@@ -57,7 +57,6 @@
     font-size: 0.875rem;
 
     .icon-circle {
-      background: #f3e8ff;
       border-radius: 50%;
       width: 24px;
       height: 24px;
@@ -90,7 +89,7 @@
       border-radius: 8px;
       padding: 0.25rem 0.5rem;
       font-size: 0.75rem;
-      color: #ff6b35;
+      color: #141414;
     }
 
     .more-items {
@@ -108,13 +107,13 @@
 
   .action-btn {
     border-radius: 8px;
-    padding: 0.5rem;
+    padding: 0.5rem 2rem;
     min-width: auto;
     height: auto;
 
     &.edit-btn {
-      background: #ff8e15;
-      color: white;
+      background: white;
+      color: #ff6b35;
 
       mat-icon {
         font-size: 1rem;
@@ -122,8 +121,8 @@
     }
 
     &.delete-btn {
-      background: #ff7462;
-      color: white;
+      background: white;
+      color: #ff2727;
 
       mat-icon {
         font-size: 1rem;

@@ -44,14 +44,18 @@
       </div>
     </div>
     
-    <app-recipe-list
-      [recipes]="filteredRecipes"
-      (editRecipe)="onEditRecipe($event)"
-      (deleteRecipe)="onDeleteRecipe(+$event)">
-    </app-recipe-list>
+    
   </div>
 </section>
 
 @if(showRecipeCreator){
 <app-create-recipe (closePopup)="showRecipeCreator = false"></app-create-recipe>
 }
+
+<div class="container">
+<app-recipe-list
+      [recipes]="filteredRecipes"
+      (editRecipe)="onEditRecipe($event)"
+      (deleteRecipe)="onDeleteRecipe(+$event)">
+    </app-recipe-list>
+</div>
