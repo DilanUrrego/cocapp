@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<div class="market-container">
+  <div class="shopping-list-header">
+    <div class="shopping-list-header-top">
+      <h1 class="shopping-title">Lista de Compras</h1>
+      <div class="week-controls">
+        <button class="nav-btn">←</button>
+        <span class="week-label">Sem. Ago 18</span>
+        <button class="nav-btn">→</button>
+        <button class="export-btn">↗ Exportar</button>
+      </div>
+    </div>
+    <p class="progress-text">
+      {{shoppingList.confirmed}}/{{shoppingList.total}} productos confirmados
+    </p>
+  </div>
+
+  <div class="shopping-categories">
+    @for (category of shoppingList.categories; track $index; let i = $index) {
+      <div class="category-card" [style.background]="category.color">
+        <div class="category-header">
+          <span class="category-icon">{{category.icon}}</span>
+          <h2 class="category-title">{{category.name}}</h2>
+        </div>
+
+        @for (item of category.items; track $index; let j = $index) {
+          <div class="item" (click)="toggleItem(i, j)">
+            <div class="item-checkbox" [class.checked]="item.checked">
+              @if (item.checked) {
+                <svg viewBox="0 0 24 24" class="check-icon">
+                  <path d="M20 6L9 17L4 12" stroke="white" stroke-width="2" fill="none"/>
+                </svg>
+              }
+            </div>
+            <div class="item-info">
+              <span class="item-name" [class.checked]="item.checked">
+                {{item.name}}
+              </span>
+              <div class="item-tags">
+                @for (recipe of item.recipes; track $index) {
+                  <span class="tag">{{recipe}}</span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

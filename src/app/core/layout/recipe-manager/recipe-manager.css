@@ -223,7 +223,7 @@
 
 .container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 10fr;
     gap: 16px;
     max-width: 1400px;
     margin: 0 auto;    

@@ -1,0 +1,40 @@
+<app-header></app-header>
+
+<div class="calendar-container">
+  <h1 class="calendar-title">Cocas de la semana</h1>
+
+  <div class="week-grid">
+    @for(day of weekDays; track $index) {
+      <div class="day-column">
+        <h2 class="day-name">{{ day.name }}</h2>
+        <p class="day-date">{{ day.date }}</p>
+
+        <div class="meals-container">
+          @for(meal of meals; track $index) {
+            <div class="meal-card">
+              <div class="meal-header">
+                <span class="meal-label">{{ meal }}</span>
+              </div>
+
+              @let mealItems = getMealItems(day.name, meal);
+              @if(mealItems.length > 0) {
+                @for(item of mealItems; track $index) {
+                  <div class="meal-info">
+                    <p class="meal-name">{{ item.name }}</p>
+                    <p class="meal-details">
+                      {{ item.ingredients }} ingredients • {{ item.time }} min
+                    </p>
+                  </div>
+                }
+              } @else {
+                <div class="add-meal">
+                  <span class="plus">+</span> Agregar coca
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>x
