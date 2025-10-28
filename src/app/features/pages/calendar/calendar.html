@@ -27,7 +27,7 @@
                   </div>
                 }
               } @else {
-                <div class="add-meal">
+                <div class="add-meal" (click)="openRecipeSelector(day.name, meal)">
                   <span class="plus">+</span> Agregar coca
                 </div>
               }
@@ -37,4 +37,4 @@
       </div>
     }
   </div>
-</div>x
+</div>

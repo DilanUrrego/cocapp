@@ -1,0 +1,21 @@
+<div class="modal-container">
+    <h2 class="modal-title">Asignar Coca para {{ data.dayName }}</h2>
+      
+    <div class="recipes-list">
+        @for(recipe of recipes; track recipe){
+            <div class="recipe-item" (click)="selectRecipe(recipe)">
+                <div class="recipe-info">
+                    <h3 class="recipe-name">{{ recipe.name }}</h3>
+                    <p class="recipe-details"> 
+                        {{ recipe.ingredients }} ingredientes • {{ recipe.time }} min
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" (click)="close()">Cancelar</button>
+      </div>
+    </div>
+

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Header } from "../../../core/layout/header/header";
+import { RecipeSelectorModal } from '../../../recipe-selector-modal/recipe-selector-modal';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-calendar',
@@ -35,7 +37,40 @@ export class Calendar {
     'Viernes': []
   };
 
+  constructor(private dialog: MatDialog) {}
+
   getMealItems(dayName: string, mealType: string): any[] {
     return this.weekData[dayName]?.filter(item => item.meal === mealType) || [];
   }
+
+  openRecipeSelector(dayName: string, mealType: string): void {
+  const dialogRef = this.dialog.open(RecipeSelectorModal, {
+    data: { dayName, mealType },
+    width: '500px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result && result.selectedRecipe) {
+      this.assignRecipeToMeal(result.dayName, result.mealType, result.selectedRecipe);
+    }
+  });
+}
+
+assignRecipeToMeal(dayName: string, mealType: string, recipe: any): void {
+  // Inicializar el array si no existe
+  if (!this.weekData[dayName]) {
+    this.weekData[dayName] = [];
+  }
+
+  // Remover cualquier receta existente para esta comida (opcional)
+  this.weekData[dayName] = this.weekData[dayName].filter(item => item.meal !== mealType);
+
+  // Agregar la nueva receta
+  this.weekData[dayName].push({
+    meal: mealType,
+    name: recipe.name,
+    ingredients: recipe.ingredients,
+    time: recipe.time
+  });
+}
 }

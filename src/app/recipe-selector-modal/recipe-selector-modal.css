@@ -1,0 +1,64 @@
+.modal-container {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    min-width: 400px;
+    max-width: 500px;
+}
+
+.modal-title {
+    color: #ff6b35;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.recipes-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 1.5rem;
+}
+
+.recipe-item {
+    background-color: #FFF0E5;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.recipe-item:hover {
+    background-color: #FFD9C0;
+}
+
+.recipe-name {
+    color: #5A5A5A;
+    font-weight: 600;
+    margin: 0 0 0.3rem 0;
+}
+
+.recipe-details {
+    color: #8A8A8A;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
