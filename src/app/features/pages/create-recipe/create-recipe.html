@@ -3,9 +3,11 @@
 <div class="modal-overlay" (click)="onOverlayClick($event)">
   <div class="modal-container" (click)="$event.stopPropagation()">
     <div class="modal-content">
-      <h2 class="modal-title">Crear Nueva Receta</h2>
+      <h2 class="modal-title">
+        {{ isEditing ? 'Editar Receta' : 'Crear Nueva Receta' }}
+      </h2>
 
-      <form class="recipe-form" [formGroup]="recipeForm" (ngSubmit)="addRecipe()">
+      <form class="recipe-form" [formGroup]="recipeForm" (ngSubmit)="saveRecipe()">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Nombre de la Receta</label>
@@ -118,7 +120,7 @@
 
         <div class="modal-actions">
           <button type="submit" class="btn-save">
-            Guardar Receta
+            {{ isEditing ? 'Actualizar Receta' : 'Guardar Receta' }}
           </button>
           <button type="button" class="btn-cancel" (click)="onCancel()">
             Cancelar

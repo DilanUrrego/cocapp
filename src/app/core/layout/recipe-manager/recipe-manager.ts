@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';  // Para ngModel en template
+import { FormsModule } from '@angular/forms';
 import { CreateRecipe } from "../../../features/pages/create-recipe/create-recipe";
 import { RecipeListComponent } from '../../../shared/components/recipe-list/recipe-list';
 import { RecipeLocal } from '../../../shared/services/recipe';
@@ -82,6 +82,7 @@ export class RecipeManager implements OnInit, OnDestroy {
   }
 
   onAddRecipe(): void {
+    this.selectedRecipe = null; 
     this.showRecipeCreator = true;
   }
 
@@ -100,16 +101,17 @@ export class RecipeManager implements OnInit, OnDestroy {
   }
 
   onRecipeCreated(recipe: Recipe): void {
-    this.recipes = [...this.recipes, recipe];
-    if (this.selectedRecipe) {
-      this.recipeService.updateRecipe(recipe); 
-      this.selectedRecipe = null;
-    } else {
-      this.recipeService.addRecipe(recipe);
-    }
-
+    this.recipeService.addRecipe(recipe);
     this.loadRecipes();
     this.showRecipeCreator = false;
+    this.selectedRecipe = null;
+  }
+
+  onRecipeUpdated(recipe: Recipe): void {
+    this.recipeService.updateRecipe(recipe);
+    this.loadRecipes();
+    this.showRecipeCreator = false;
+    this.selectedRecipe = null;
   }
 
   onEditRecipe(recipe: Recipe): void {
@@ -120,5 +122,10 @@ export class RecipeManager implements OnInit, OnDestroy {
   onDeleteRecipe(id: number): void {
     this.recipeService.deleteRecipe(id);
     this.loadRecipes();
+  }
+
+  onClosePopup(): void {
+    this.showRecipeCreator = false;
+    this.selectedRecipe = null;
   }
 }

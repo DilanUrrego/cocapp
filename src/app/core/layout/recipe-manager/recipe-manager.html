@@ -2,7 +2,7 @@
   <div class="manager-container">
     <div class="manager-header">
       <h1 class="title">Recetario</h1>
-      <button class="btn-add-recipe" (click)="showRecipeCreator = true">
+      <button class="btn-add-recipe" (click)="onAddRecipe()">
         <span class="plus-icon">+</span>
         Añadir Receta
       </button>
@@ -18,6 +18,7 @@
           type="text" 
           class="search-input" 
           placeholder="Busca recetas o ingredientes..."
+          [(ngModel)]="searchText"
           (input)="onSearchChange()"
         >
       </div>
@@ -30,32 +31,35 @@
           </svg>
         </button>
         @if(isDropdownOpen){
-            <ul class="dropdown-menu">
+          <ul class="dropdown-menu">
             @for(filter of filters; track filter){
-            <li 
+              <li 
                 class="dropdown-item" 
                 [class.active]="filter === selectedFilter"
                 (click)="selectFilter(filter)">
                 {{ filter }}
-            </li>}
-            </ul>
-        
+              </li>
+            }
+          </ul>
         }
       </div>
     </div>
-    
-    
   </div>
-</section>
 
-@if(showRecipeCreator){
-<app-create-recipe (closePopup)="showRecipeCreator = false"></app-create-recipe>
-}
+  @if (showRecipeCreator) {
+    <app-create-recipe
+      [recipeToEdit]="selectedRecipe"
+      (recipeCreated)="onRecipeCreated($event)"
+      (recipeUpdated)="onRecipeUpdated($event)"
+      (closePopup)="onClosePopup()"
+    ></app-create-recipe>
+  }
 
-<div class="container">
-<app-recipe-list
+  <div class="container">
+    <app-recipe-list
       [recipes]="filteredRecipes"
       (editRecipe)="onEditRecipe($event)"
       (deleteRecipe)="onDeleteRecipe(+$event)">
     </app-recipe-list>
-</div>
+  </div>
+</section>
