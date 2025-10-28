@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +13,14 @@ import { UpperCasePipe } from '@angular/common';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatMenuModule, MatIconModule, MatButtonModule, UpperCasePipe],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatMenuModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    UpperCasePipe
+  ],
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
@@ -31,11 +39,15 @@ export class Header {
     this.router.navigate([`/${route}`]);
   }
 
+  // Método para verificar si una ruta está activa
+  isActive(route: string): boolean {
+    return this.router.url === `/${route}` || 
+           this.router.url.startsWith(`/${route}/`);
+  }
+
   logout() {
     this.auth.isLogged.set(false);
     localStorage.removeItem('activeUser');
-
     this.router.navigate(['/']);
   }
 }
-

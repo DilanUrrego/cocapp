@@ -17,7 +17,7 @@ export class Market {
       {
         name: 'Orgánico',
         icon: '🥬',
-        color: '#E9CBBE',
+        color: '#FFF0E5',
         items: [
           { name: '1 paquete Albahaca', recipes: ['Lasaña'], checked: false }
         ]
@@ -25,7 +25,7 @@ export class Market {
       {
         name: 'Lácteos',
         icon: '🥛',
-        color: '#E9CBBE',
+        color: '#FFF0E5',
         items: [
           { name: '1 paquete Queso', recipes: ['Lasaña', 'Sánduche'], checked: false }
         ]
@@ -33,7 +33,7 @@ export class Market {
       {
         name: 'Carne',
         icon: '🥩',
-        color: '#E9CBBE',
+        color: '#FFF0E5',
         items: [
           { name: '10 unidades Pollo', recipes: ['Lasaña', 'Wrap de Pollo'], checked: false },
           { name: '2 libras Res', recipes: ['Lasaña'], checked: false }
@@ -42,7 +42,7 @@ export class Market {
       {
         name: 'Despensa',
         icon: '🧂',
-        color: '#E9CBBE',
+        color: '#FFF0E5',
         items: [
           { name: '1 Sobre Salsa de Tomate', recipes: ['Lasaña', 'Sánduche'], checked: false }
         ]
