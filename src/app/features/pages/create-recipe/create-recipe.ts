@@ -35,48 +35,47 @@ export class CreateRecipe implements OnChanges {
     ])
   });
 
-  saveRecipe() {
-    if (!this.recipeForm.valid) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Formulario inválido',
-        text: 'Faltan campos por completar o son incorrectos.',
-      });
-      return;
-    }
-
-    const recipe = this.recipeForm.value as Recipe;
-    
-    if (this.isEditing && this.recipeToEdit) {
-      const updatedRecipe = { ...this.recipeToEdit, ...recipe };
-      this.recipeLocal.updateRecipe(updatedRecipe);
-      this.recipeUpdated.emit(updatedRecipe);
-      
-      Swal.fire({
-        icon: 'success',
-        title: 'Receta actualizada',
-        text: 'La receta se ha actualizado correctamente.',
-        timer: 1200,
-        showConfirmButton: false
-      }).then(() => {
-        this.close();
-      });
-    } else {
-    
-      this.recipeLocal.addRecipe(recipe);
-      this.recipeCreated.emit(recipe);
-      
-      Swal.fire({
-        icon: 'success',
-        title: 'Receta creada',
-        text: 'La receta se ha guardado correctamente.',
-        timer: 1200,
-        showConfirmButton: false
-      }).then(() => {
-        this.close();
-      });
-    }
+saveRecipe() {
+  if (!this.recipeForm.valid) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Formulario inválido',
+      text: 'Faltan campos por completar o son incorrectos.',
+    });
+    return;
   }
+
+  const recipe = this.recipeForm.value as Recipe;
+  
+  if (this.isEditing && this.recipeToEdit) {
+    const updatedRecipe = { ...this.recipeToEdit, ...recipe };
+    // SOLO emitir, NO guardar en el servicio aquí
+    this.recipeUpdated.emit(updatedRecipe);
+    
+    Swal.fire({
+      icon: 'success',
+      title: 'Receta actualizada',
+      text: 'La receta se ha actualizado correctamente.',
+      timer: 1200,
+      showConfirmButton: false
+    }).then(() => {
+      this.close();
+    });
+  } else {
+    // SOLO emitir, NO guardar en el servicio aquí
+    this.recipeCreated.emit(recipe);
+    
+    Swal.fire({
+      icon: 'success',
+      title: 'Receta creada',
+      text: 'La receta se ha guardado correctamente.',
+      timer: 1200,
+      showConfirmButton: false
+    }).then(() => {
+      this.close();
+    });
+  }
+}
 
   private createIngredient() {
     return this.fb.group({
