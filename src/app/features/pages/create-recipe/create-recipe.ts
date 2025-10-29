@@ -49,7 +49,6 @@ saveRecipe() {
   
   if (this.isEditing && this.recipeToEdit) {
     const updatedRecipe = { ...this.recipeToEdit, ...recipe };
-    // SOLO emitir, NO guardar en el servicio aquí
     this.recipeUpdated.emit(updatedRecipe);
     
     Swal.fire({
@@ -62,7 +61,6 @@ saveRecipe() {
       this.close();
     });
   } else {
-    // SOLO emitir, NO guardar en el servicio aquí
     this.recipeCreated.emit(recipe);
     
     Swal.fire({
