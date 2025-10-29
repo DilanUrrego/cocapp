@@ -22,11 +22,11 @@ export class SignUp {
   title = "Crear Cuenta";
 
   signUpForm = this.fb.group({
-    username: ['', [Validators.required]],
+    name: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(5)]],
     repassword: ['', [Validators.required]],
-    profilePhoto: [''] // Esto puede ser string | null | undefined
+    avatarUrl: ['']
   });
 
   onSignUp() {
@@ -51,22 +51,20 @@ export class SignUp {
       return;
     }
 
-    // ✅ Solución: Convertir null/undefined a undefined explícitamente
-    const user: User = {
+    const userData = {
+      name: this.signUpForm.value.name!,
       email: this.signUpForm.value.email!,
       password: password!,
-      name: this.signUpForm.value.username!,
-      rePassword: repassword!,
-      profilePhoto: this.signUpForm.value.profilePhoto || undefined // ✅ Esto soluciona el error
+      avatarUrl: this.signUpForm.value.avatarUrl || undefined
     };
 
-    this.authService.signUp(user).subscribe({
+    this.authService.signUp(userData).subscribe({
       next: (response) => {
         if (response.success) {
           Swal.fire({
             icon: 'success',
             title: 'Registro exitoso',
-            text: response.message || 'Usuario registrado correctamente',
+            text: 'Usuario registrado correctamente',
             timer: 1500,
             showConfirmButton: false
           }).then(() => {
@@ -77,7 +75,7 @@ export class SignUp {
           Swal.fire({
             icon: 'error',
             title: 'Error en registro',
-            text: response.message || 'Ocurrió un error inesperado',
+            text: 'Ocurrió un error inesperado',
           });
         }
       },
@@ -85,8 +83,8 @@ export class SignUp {
         console.error('Error en signup:', error);
         Swal.fire({
           icon: 'error',
-          title: 'Error de conexión',
-          text: 'No se pudo conectar con el servidor.',
+          title: 'Error de registro',
+          text: 'Ya existe un correo asociado a una cuenta',
         });
       }
     });

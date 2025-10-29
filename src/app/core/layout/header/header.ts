@@ -48,6 +48,7 @@ export class Header {
   logout() {
     this.auth.isLogged.set(false);
     localStorage.removeItem('activeUser');
+    localStorage.removeItem('access_token');
     this.router.navigate(['/']);
   }
 }

@@ -1,7 +1,7 @@
 export interface User {
+  id ?: string | number;
   email: string;
   password: string;
   name: string;
-  rePassword: string;
-  profilePhoto?: string;
+  avatarUrl?: string;
 }

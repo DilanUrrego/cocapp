@@ -54,7 +54,7 @@ export class Login {
           Swal.fire({
             icon: 'error',
             title: 'Error de autenticación',
-            text: response.message || 'Usuario o contraseña incorrectos.',
+            text:'Usuario o contraseña incorrectos.',
           });
         }
       },

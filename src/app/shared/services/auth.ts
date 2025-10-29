@@ -9,12 +9,12 @@ import { LoginResponse, SignUpResponse } from '../interfaces/login-response';
 })
 export class Auth {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/api/v1/auth'; // URL de tu backend
+  private apiUrl = 'http://localhost:3000/api/v1/auth';
   
   isLogged = signal(false);
 
   constructor() {
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem('access_token');
     if (token) {
       this.isLogged.set(true);
     }
@@ -26,11 +26,11 @@ export class Auth {
         tap(response => {
           if (response.success) {
             this.isLogged.set(true);
-            // Guardar token si tu backend lo devuelve
-            if (response.token) {
-              localStorage.setItem('authToken', response.token);
+            console.log('Usuario logueado con éxito');
+            console.log(response.access_token);
+            if (response.access_token) {
+              localStorage.setItem('access_token', response.access_token);
             }
-            // Guardar información del usuario
             localStorage.setItem('activeUser', JSON.stringify(user));
           }
         })
@@ -43,9 +43,8 @@ export class Auth {
         tap(response => {
           if (response.success) {
             this.isLogged.set(true);
-            // Guardar token si tu backend lo devuelve
-            if (response.token) {
-              localStorage.setItem('authToken', response.token);
+            if (response.access_token) {
+              localStorage.setItem('access_token', response.access_token);
             }
             localStorage.setItem('activeUser', JSON.stringify(user));
           }
@@ -55,7 +54,7 @@ export class Auth {
 
   logout(): void {
     localStorage.removeItem('activeUser');
-    localStorage.removeItem('authToken');
+    localStorage.removeItem('access_token');
     this.isLogged.set(false);
   }
 
