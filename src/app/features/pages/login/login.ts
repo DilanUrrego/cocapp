@@ -25,7 +25,7 @@ export class Login {
     password: ['', [Validators.required, Validators.minLength(5)]]
   });
 
-onLogin() {
+  onLogin() {
     if (!this.loginForm.valid) {
       Swal.fire({
         icon: 'error',
@@ -36,26 +36,37 @@ onLogin() {
     }
 
     let user = this.loginForm.value as User;
-    let loginResponse = this.authService.login(user);
-
-    if (!!loginResponse.success) {
-      Swal.fire({
-        icon: 'success',
-        title: 'Ingreso exitoso',
-        text: 'Redirigiendo...',
-        timer: 1500,
-        showConfirmButton: false
-      }).then(() => {
-        this.router.navigate(['/recipes']);
-      });
-      return;
-    }
-
-    Swal.fire({
-      icon: 'error',
-      title: 'Error de autenticación',
-      text: 'Usuario o contraseña incorrectos.',
-  });
+    
+    this.authService.login(user).subscribe({
+      next: (response) => {
+        if (response.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Ingreso exitoso',
+            text: 'Redirigiendo...',
+            timer: 1500,
+            showConfirmButton: false
+          }).then(() => {
+            this.router.navigate(['/recipes']);
+            this.closePopup.emit();
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error de autenticación',
+            text: response.message || 'Usuario o contraseña incorrectos.',
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Error en login:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de conexión',
+          text: 'No se pudo conectar con el servidor. Verifica que el backend esté ejecutándose.',
+        });
+      }
+    });
   }
 
   close() {

@@ -1,87 +1,98 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Auth } from '../../../shared/services/auth';
-import { Router, RouterLink } from '@angular/router';
 import { User } from '../../../shared/interfaces/user';
-import { passwordValidator } from '../../../shared/validator/password-validator';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [ ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './sign-up.html',
-  styleUrl: './sign-up.css'
+  styleUrls: ['./sign-up.css']
 })
 export class SignUp {
-  @Output() closePopup = new EventEmitter<void>(); 
+  @Output() closePopup = new EventEmitter<void>();
 
-  fb = inject(FormBuilder);
   router = inject(Router);
+  fb = inject(FormBuilder);
   authService = inject(Auth);
-  title = "Registrar Usuario";
 
-  validators = [Validators.required, Validators.minLength(5)];
+  title = "Crear Cuenta";
 
   signUpForm = this.fb.group({
     username: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', this.validators],
-    repassword: ['', this.validators],
-    profilePhoto: [null]
-  }, { validators: passwordValidator });
-  
+    password: ['', [Validators.required, Validators.minLength(5)]],
+    repassword: ['', [Validators.required]],
+    profilePhoto: [''] // Esto puede ser string | null | undefined
+  });
 
   onSignUp() {
-    if (this.signUpForm.errors?.['passwordMismatch']) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Contraseñas diferentes',
-        text: 'Las contraseñas no coinciden.',
-      });
-      return;
-    }
-
-    if(!this.signUpForm.valid) {
+    if (!this.signUpForm.valid) {
       Swal.fire({
         icon: 'error',
         title: 'Formulario inválido',
-        text: 'Faltan campos por completar o son incorrectos.',
+        text: 'Por favor completa todos los campos correctamente.',
       });
       return;
     }
 
-    let user = this.signUpForm.value as User;
-    let signUpResponse = this.authService.signUp(user);
-    if(!!signUpResponse.success) {
+    const password = this.signUpForm.value.password;
+    const repassword = this.signUpForm.value.repassword;
+
+    if (password !== repassword) {
       Swal.fire({
-        icon: 'success',
-        title: 'Registro exitoso',
-        text: 'Redirigiendo...',
-        timer: 1500,
-        showConfirmButton: false
-      }).then(() => {
-        this.router.navigate(['/recipes']);
+        icon: 'error',
+        title: 'Contraseñas no coinciden',
+        text: 'Las contraseñas deben ser iguales.',
       });
       return;
     }
 
-    Swal.fire({
-      icon: 'error',
-      title: 'Registro fallido',
-      text: signUpResponse.message || 'Ocurrió un error inesperado.',
+    // ✅ Solución: Convertir null/undefined a undefined explícitamente
+    const user: User = {
+      email: this.signUpForm.value.email!,
+      password: password!,
+      name: this.signUpForm.value.username!,
+      rePassword: repassword!,
+      profilePhoto: this.signUpForm.value.profilePhoto || undefined // ✅ Esto soluciona el error
+    };
+
+    this.authService.signUp(user).subscribe({
+      next: (response) => {
+        if (response.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Registro exitoso',
+            text: response.message || 'Usuario registrado correctamente',
+            timer: 1500,
+            showConfirmButton: false
+          }).then(() => {
+            this.router.navigate(['/recipes']);
+            this.closePopup.emit();
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error en registro',
+            text: response.message || 'Ocurrió un error inesperado',
+          });
+        }
+      },
+      error: (error) => {
+        console.error('Error en signup:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de conexión',
+          text: 'No se pudo conectar con el servidor.',
+        });
+      }
     });
   }
 
   close() {
-    this.signUpForm.reset(); 
-    this.closePopup.emit();  
+    this.closePopup.emit();
   }
-
-
-
-
 }
-
-
-
